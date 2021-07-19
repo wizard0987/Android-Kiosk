@@ -12,6 +12,8 @@ import com.example.megacoffee.R;
 
 public class TabMenuBreadFrag extends Fragment {
 
+    public TabMenuBreadFrag() { }
+
     @Nullable
     public View onCreateView(LayoutInflater inflater,
                              @Nullable ViewGroup container,
@@ -20,7 +22,4 @@ public class TabMenuBreadFrag extends Fragment {
         return inflater.inflate(R.layout.tl_ti_bread, container, false);
     }
 
-    public TabMenuBreadFrag() {
-
-    }
 }

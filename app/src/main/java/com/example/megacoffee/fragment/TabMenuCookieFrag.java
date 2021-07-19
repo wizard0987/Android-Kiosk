@@ -12,6 +12,8 @@ import com.example.megacoffee.R;
 
 public class TabMenuCookieFrag extends Fragment {
 
+    public TabMenuCookieFrag() { }
+
     @Nullable
     public View onCreateView(LayoutInflater inflater,
                              @Nullable ViewGroup container,
@@ -20,7 +22,4 @@ public class TabMenuCookieFrag extends Fragment {
         return inflater.inflate(R.layout.tl_ti_cookie, container, false);
     }
 
-    public TabMenuCookieFrag() {
-
-    }
 }

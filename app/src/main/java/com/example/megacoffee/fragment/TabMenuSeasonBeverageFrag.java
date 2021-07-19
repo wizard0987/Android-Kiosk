@@ -12,15 +12,13 @@ import com.example.megacoffee.R;
 
 public class TabMenuSeasonBeverageFrag extends Fragment {
 
+    public TabMenuSeasonBeverageFrag() { }
+
     @Nullable
     public View onCreateView(LayoutInflater inflater,
                              @Nullable ViewGroup container,
                              Bundle savedInstanceState) {
 
         return inflater.inflate(R.layout.tl_ti_season_beverage, container, false);
-    }
-
-    public TabMenuSeasonBeverageFrag() {
-
     }
 }

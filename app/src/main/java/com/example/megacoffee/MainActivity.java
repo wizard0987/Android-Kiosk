@@ -1,6 +1,7 @@
 package com.example.megacoffee;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 
 import android.os.Bundle;
@@ -18,60 +19,44 @@ public class MainActivity extends AppCompatActivity {
 
     private ActivityMainBinding mainBinding;
 
+    private void switchFragment(Fragment fragment) {
+        FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
+        transaction.replace(R.id.tab_menu_frame, fragment);
+        transaction.commit();
+    }
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         // ViewBinding 셋팅
-//        setContentView(R.layout.activity_main);
         mainBinding = ActivityMainBinding.inflate(getLayoutInflater());
         setContentView(mainBinding.getRoot());
+
+        // 기본 Fragment 지정
+        switchFragment(new TabMenuSeasonBeverageFrag());
 
         mainBinding.tabLayout.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
             public void onTabSelected(TabLayout.Tab tab) {
 
-                FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
-
                 switch (tab.getPosition()) {
                     case 0:
-                        TabMenuSeasonBeverageFrag frag1 = new TabMenuSeasonBeverageFrag();
-                        transaction.replace(R.id.tab_menu_frame, frag1);
-                        transaction.commit();
-                        break;
+                        switchFragment(new TabMenuSeasonBeverageFrag()); break;
                     case 1:
-                        TabMenuSeasonDessertFrag frag2 = new TabMenuSeasonDessertFrag();
-                        transaction.replace(R.id.tab_menu_frame, frag2);
-                        transaction.commit();
-                        break;
+                        switchFragment(new TabMenuSeasonDessertFrag()); break;
                     case 2:
-                        TabMenuHotCoffeeFrag frag3 = new TabMenuHotCoffeeFrag();
-                        transaction.replace(R.id.tab_menu_frame, frag3);
-                        transaction.commit();
-                        break;
+                        switchFragment(new TabMenuHotCoffeeFrag()); break;
                     case 3:
-                        TabMenuIceCoffeeFrag frag4 = new TabMenuIceCoffeeFrag();
-                        transaction.replace(R.id.tab_menu_frame, frag4);
-                        transaction.commit();
-                        break;
+                        switchFragment(new TabMenuIceCoffeeFrag()); break;
                     case 4:
-                        TabMenuBreadFrag frag5 = new TabMenuBreadFrag();
-                        transaction.replace(R.id.tab_menu_frame, frag5);
-                        transaction.commit();
-                        break;
+                        switchFragment(new TabMenuBreadFrag()); break;
                     case 5:
-                        TabMenuCookieFrag frag6 = new TabMenuCookieFrag();
-                        transaction.replace(R.id.tab_menu_frame, frag6);
-                        transaction.commit();
-                        break;
+                        switchFragment(new TabMenuCookieFrag()); break;
                 }
             }
 
-            public void onTabUnselected(TabLayout.Tab tab) {
+            public void onTabUnselected(TabLayout.Tab tab) {}
 
-            }
-
-            public void onTabReselected(TabLayout.Tab tab) {
-
-            }
+            public void onTabReselected(TabLayout.Tab tab) {}
         });
 
     }

@@ -18,7 +18,6 @@ public class SplashActivity extends AppCompatActivity {
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         // ViewBinding Setting
-//        setContentView(R.layout.activity_splash);
         splashBinding = ActivitySplashBinding.inflate(getLayoutInflater());
         View view = splashBinding.getRoot();
         setContentView(view);
@@ -28,7 +27,7 @@ public class SplashActivity extends AppCompatActivity {
             Intent intent = new Intent(SplashActivity.this, MainActivity.class);
             startActivity(intent);
             finish();
-        }, 4000L);
+        }, 2000L);
 
     }
 

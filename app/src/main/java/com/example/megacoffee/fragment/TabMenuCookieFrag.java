@@ -14,12 +14,16 @@ public class TabMenuCookieFrag extends Fragment {
 
     public TabMenuCookieFrag() { }
 
+    public static TabMenuCookieFrag newInstance() {
+        return new TabMenuCookieFrag();
+    }
+
     @Nullable
     public View onCreateView(LayoutInflater inflater,
                              @Nullable ViewGroup container,
                              Bundle savedInstanceState) {
 
-        return inflater.inflate(R.layout.tl_ti_cookie, container, false);
+        return inflater.inflate(R.layout.main_fragment_cookie, container, false);
     }
 
 }

@@ -14,11 +14,15 @@ public class TabMenuIceCoffeeFrag extends Fragment {
 
     public TabMenuIceCoffeeFrag() { }
 
+    public static TabMenuIceCoffeeFrag newInstance() {
+        return newInstance();
+    }
+
     @Nullable
     public View onCreateView(LayoutInflater inflater,
                              @Nullable ViewGroup container,
                              Bundle savedInstanceState) {
 
-        return inflater.inflate(R.layout.tl_ti_ice_coffee, container, false);
+        return inflater.inflate(R.layout.main_fragment_ice_coffee, container, false);
     }
 }

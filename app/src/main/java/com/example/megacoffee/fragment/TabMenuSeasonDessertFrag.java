@@ -14,11 +14,15 @@ public class TabMenuSeasonDessertFrag extends Fragment {
 
     public TabMenuSeasonDessertFrag() { }
 
+    public static TabMenuSeasonDessertFrag newInstance() {
+        return new TabMenuSeasonDessertFrag();
+    }
+
     @Nullable
     public View onCreateView(LayoutInflater inflater,
                              @Nullable ViewGroup container,
                              Bundle savedInstanceState) {
 
-        return inflater.inflate(R.layout.tl_ti_season_dessert, container, false);
+        return inflater.inflate(R.layout.main_fragment_season_dessert, container, false);
     }
 }

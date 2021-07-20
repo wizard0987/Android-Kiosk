@@ -13,15 +13,16 @@ import com.example.megacoffee.fragment.TabMenuHotCoffeeFrag;
 import com.example.megacoffee.fragment.TabMenuIceCoffeeFrag;
 import com.example.megacoffee.fragment.TabMenuSeasonDessertFrag;
 import com.example.megacoffee.fragment.TabMenuSeasonBeverageFrag;
+import com.example.megacoffee.fragment.subFragment.ViewPagerAdapter;
 import com.google.android.material.tabs.TabLayout;
 
 public class MainActivity extends AppCompatActivity {
 
     private ActivityMainBinding mainBinding;
 
-    private void switchFragment(Fragment fragment) {
+    public void switchFragment(Fragment fragment) {
         FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
-        transaction.replace(R.id.tab_menu_frame, fragment);
+        transaction.replace(R.id.tab_menu_content, fragment);
         transaction.commit();
     }
 
@@ -40,17 +41,17 @@ public class MainActivity extends AppCompatActivity {
 
                 switch (tab.getPosition()) {
                     case 0:
-                        switchFragment(new TabMenuSeasonBeverageFrag()); break;
+                        switchFragment(TabMenuSeasonBeverageFrag.newInstance()); break;
                     case 1:
-                        switchFragment(new TabMenuSeasonDessertFrag()); break;
+                        switchFragment(TabMenuSeasonDessertFrag.newInstance()); break;
                     case 2:
-                        switchFragment(new TabMenuHotCoffeeFrag()); break;
+                        switchFragment(TabMenuHotCoffeeFrag.newInstance()); break;
                     case 3:
-                        switchFragment(new TabMenuIceCoffeeFrag()); break;
+                        switchFragment(TabMenuIceCoffeeFrag.newInstance()); break;
                     case 4:
-                        switchFragment(new TabMenuBreadFrag()); break;
+                        switchFragment(TabMenuBreadFrag.newInstance()); break;
                     case 5:
-                        switchFragment(new TabMenuCookieFrag()); break;
+                        switchFragment(TabMenuCookieFrag.newInstance()); break;
                 }
             }
 
@@ -58,6 +59,9 @@ public class MainActivity extends AppCompatActivity {
 
             public void onTabReselected(TabLayout.Tab tab) {}
         });
+
+
+
 
     }
 

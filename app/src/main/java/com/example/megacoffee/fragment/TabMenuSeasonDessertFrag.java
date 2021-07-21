@@ -23,6 +23,6 @@ public class TabMenuSeasonDessertFrag extends Fragment {
                              @Nullable ViewGroup container,
                              Bundle savedInstanceState) {
 
-        return inflater.inflate(R.layout.main_fragment_season_dessert, container, false);
+        return inflater.inflate(R.layout.parent_fragment_season_dessert, container, false);
     }
 }

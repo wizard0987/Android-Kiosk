@@ -23,6 +23,6 @@ public class TabMenuHotCoffeeFrag extends Fragment {
                              @Nullable ViewGroup container,
                              Bundle savedInstanceState) {
 
-        return inflater.inflate(R.layout.main_fragment_hot_coffee, container, false);
+        return inflater.inflate(R.layout.parent_fragment_hot_coffee, container, false);
     }
 }

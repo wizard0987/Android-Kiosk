@@ -13,7 +13,6 @@ import com.example.megacoffee.fragment.TabMenuHotCoffeeFrag;
 import com.example.megacoffee.fragment.TabMenuIceCoffeeFrag;
 import com.example.megacoffee.fragment.TabMenuSeasonDessertFrag;
 import com.example.megacoffee.fragment.TabMenuSeasonBeverageFrag;
-import com.example.megacoffee.fragment.subFragment.ViewPagerAdapter;
 import com.google.android.material.tabs.TabLayout;
 
 public class MainActivity extends AppCompatActivity {

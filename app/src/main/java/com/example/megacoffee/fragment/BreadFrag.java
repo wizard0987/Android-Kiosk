@@ -10,12 +10,12 @@ import androidx.annotation.Nullable;
 
 import com.example.megacoffee.R;
 
-public class TabMenuSeasonDessertFrag extends Fragment {
+public class BreadFrag extends Fragment {
 
-    public TabMenuSeasonDessertFrag() { }
+    public BreadFrag() { }
 
-    public static TabMenuSeasonDessertFrag newInstance() {
-        return new TabMenuSeasonDessertFrag();
+    public static BreadFrag newInstance() {
+        return new BreadFrag();
     }
 
     @Nullable
@@ -23,6 +23,7 @@ public class TabMenuSeasonDessertFrag extends Fragment {
                              @Nullable ViewGroup container,
                              Bundle savedInstanceState) {
 
-        return inflater.inflate(R.layout.parent_fragment_season_dessert, container, false);
+        return inflater.inflate(R.layout.frag_bread, container, false);
     }
+
 }

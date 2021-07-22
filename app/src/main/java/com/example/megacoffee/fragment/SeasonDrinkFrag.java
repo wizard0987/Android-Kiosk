@@ -12,32 +12,29 @@ import androidx.fragment.app.FragmentActivity;
 import androidx.viewpager2.adapter.FragmentStateAdapter;
 import androidx.viewpager2.widget.ViewPager2;
 
-import com.example.megacoffee.R;
-import com.example.megacoffee.databinding.ParentFragmentSeasonBeverageBinding;
-import com.example.megacoffee.fragment.subFragment.Child1SeasonBeverageFrag;
-import com.example.megacoffee.fragment.subFragment.Child2SeasonBeverageFrag;
+import com.example.megacoffee.databinding.FragSeasonDrinkBinding;
+import com.example.megacoffee.fragment.subFragment.Child1SeasonDrinkFrag;
+import com.example.megacoffee.fragment.subFragment.Child2SeasonDrinkFrag;
 
-import me.relex.circleindicator.CircleIndicator3;
+public class SeasonDrinkFrag extends Fragment {
 
-public class TabMenuSeasonBeverageFrag extends Fragment {
-
-    private ParentFragmentSeasonBeverageBinding sbBinding;
-//    private View view;
+    private View view;
 //    private ViewPager2 viewPager;
 //    private CircleIndicator3 indicator;
+    private FragSeasonDrinkBinding sbBinding;
     private int num_page = 2;
 
-    public TabMenuSeasonBeverageFrag() { }
+    public SeasonDrinkFrag() { }
 
-    public static TabMenuSeasonBeverageFrag newInstance() {
-        return new TabMenuSeasonBeverageFrag();
+    public static SeasonDrinkFrag newInstance() {
+        return new SeasonDrinkFrag();
     }
 
     @Nullable
     public View onCreateView(LayoutInflater inflater,
                              @Nullable ViewGroup container,
                              Bundle savedInstanceState) {
-//        view = inflater.inflate(R.layout.parent_fragment_season_beverage, container, false);
+//        view = inflater.inflate(R.layout.parent_frag_season_beverage, container, false);
 //
 //        viewPager = view.findViewById(R.id.vp_child_fragment_season_beverage);
 //        indicator = view.findViewById(R.id.ci_child_fragment_season_beverage);
@@ -63,25 +60,26 @@ public class TabMenuSeasonBeverageFrag extends Fragment {
         /**
          * Fragment에서 Binding 사용하기
          */
-        sbBinding = ParentFragmentSeasonBeverageBinding.inflate(inflater, container, false);
-        View view = sbBinding.getRoot();
+        sbBinding = FragSeasonDrinkBinding.inflate(inflater, container, false);
+        view = sbBinding.getRoot();
 
-        sbBinding.vpChildFragmentSeasonBeverage.setAdapter(new ViewPagerAdapter(getActivity()));
-        sbBinding.vpChildFragmentSeasonBeverage.setOrientation(ViewPager2.ORIENTATION_HORIZONTAL);
-        sbBinding.vpChildFragmentSeasonBeverage.setCurrentItem(0);
+        sbBinding.vpSeasonDrink.setAdapter(new ViewPagerAdapter(getActivity()));
+//        sbBinding.vpSeasonDrink.setOrientation(ViewPager2.ORIENTATION_HORIZONTAL); // Default : ORIENTATION_HORIZONTAL
+        sbBinding.vpSeasonDrink.setCurrentItem(0);
         // viewpager를 사용할 때 이전 또는 다음 페이지 몇개까지 미리 로딩할지 지정
 //        sbBinding.vpChildFragmentSeasonBeverage.setOffscreenPageLimit(3);
 
-        sbBinding.ciChildFragmentSeasonBeverage.setViewPager(sbBinding.vpChildFragmentSeasonBeverage);
-        sbBinding.ciChildFragmentSeasonBeverage.createIndicators(num_page, 0);
+        sbBinding.ciSeasonDrink.setViewPager(sbBinding.vpSeasonDrink);
+        sbBinding.ciSeasonDrink.createIndicators(num_page, 0);
 
-        sbBinding.vpChildFragmentSeasonBeverage.registerOnPageChangeCallback(new ViewPager2.OnPageChangeCallback() {
+        sbBinding.vpSeasonDrink.registerOnPageChangeCallback(new ViewPager2.OnPageChangeCallback() {
             public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
                 super.onPageScrolled(position, positionOffset, positionOffsetPixels);
             }
 
             public void onPageSelected(int position) {
                 super.onPageSelected(position);
+//                sbBinding.ciSeasonBeverage.animatePageSelected(position);
             }
 
             public void onPageScrollStateChanged(int state) {
@@ -103,9 +101,9 @@ public class TabMenuSeasonBeverageFrag extends Fragment {
         public Fragment createFragment(int position) {
             switch (position) {
                 case 0:
-                    return Child1SeasonBeverageFrag.newInstance();
+                    return Child1SeasonDrinkFrag.newInstance();
                 case 1:
-                    return Child2SeasonBeverageFrag.newInstance();
+                    return Child2SeasonDrinkFrag.newInstance();
                 default:
                     return null;
             }

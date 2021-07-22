@@ -10,12 +10,12 @@ import androidx.annotation.Nullable;
 
 import com.example.megacoffee.R;
 
-public class TabMenuCookieFrag extends Fragment {
+public class IceCoffeeFrag extends Fragment {
 
-    public TabMenuCookieFrag() { }
+    public IceCoffeeFrag() { }
 
-    public static TabMenuCookieFrag newInstance() {
-        return new TabMenuCookieFrag();
+    public static IceCoffeeFrag newInstance() {
+        return newInstance();
     }
 
     @Nullable
@@ -23,7 +23,6 @@ public class TabMenuCookieFrag extends Fragment {
                              @Nullable ViewGroup container,
                              Bundle savedInstanceState) {
 
-        return inflater.inflate(R.layout.parent_fragment_cookie, container, false);
+        return inflater.inflate(R.layout.frag_ice_coffee, container, false);
     }
-
 }

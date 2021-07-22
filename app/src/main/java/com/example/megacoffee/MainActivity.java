@@ -7,12 +7,12 @@ import androidx.fragment.app.FragmentTransaction;
 import android.os.Bundle;
 
 import com.example.megacoffee.databinding.ActivityMainBinding;
-import com.example.megacoffee.fragment.TabMenuBreadFrag;
-import com.example.megacoffee.fragment.TabMenuCookieFrag;
-import com.example.megacoffee.fragment.TabMenuHotCoffeeFrag;
-import com.example.megacoffee.fragment.TabMenuIceCoffeeFrag;
-import com.example.megacoffee.fragment.TabMenuSeasonDessertFrag;
-import com.example.megacoffee.fragment.TabMenuSeasonBeverageFrag;
+import com.example.megacoffee.fragment.BreadFrag;
+import com.example.megacoffee.fragment.CookieFrag;
+import com.example.megacoffee.fragment.HotCoffeeFrag;
+import com.example.megacoffee.fragment.IceCoffeeFrag;
+import com.example.megacoffee.fragment.SeasonDessertFrag;
+import com.example.megacoffee.fragment.SeasonDrinkFrag;
 import com.google.android.material.tabs.TabLayout;
 
 public class MainActivity extends AppCompatActivity {
@@ -33,24 +33,24 @@ public class MainActivity extends AppCompatActivity {
         setContentView(mainBinding.getRoot());
 
         // 기본 Fragment 지정
-        switchFragment(new TabMenuSeasonBeverageFrag());
+        switchFragment(new SeasonDrinkFrag());
 
         mainBinding.tabLayout.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
             public void onTabSelected(TabLayout.Tab tab) {
 
                 switch (tab.getPosition()) {
                     case 0:
-                        switchFragment(TabMenuSeasonBeverageFrag.newInstance()); break;
+                        switchFragment(SeasonDrinkFrag.newInstance()); break;
                     case 1:
-                        switchFragment(TabMenuSeasonDessertFrag.newInstance()); break;
+                        switchFragment(SeasonDessertFrag.newInstance()); break;
                     case 2:
-                        switchFragment(TabMenuHotCoffeeFrag.newInstance()); break;
+                        switchFragment(HotCoffeeFrag.newInstance()); break;
                     case 3:
-                        switchFragment(TabMenuIceCoffeeFrag.newInstance()); break;
+                        switchFragment(IceCoffeeFrag.newInstance()); break;
                     case 4:
-                        switchFragment(TabMenuBreadFrag.newInstance()); break;
+                        switchFragment(BreadFrag.newInstance()); break;
                     case 5:
-                        switchFragment(TabMenuCookieFrag.newInstance()); break;
+                        switchFragment(CookieFrag.newInstance()); break;
                 }
             }
 

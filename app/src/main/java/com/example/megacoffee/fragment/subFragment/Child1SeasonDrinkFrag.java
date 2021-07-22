@@ -11,19 +11,19 @@ import androidx.fragment.app.Fragment;
 
 import com.example.megacoffee.R;
 
-public class Child2SeasonBeverageFrag extends Fragment {
+public class Child1SeasonDrinkFrag extends Fragment {
 
     private View view;
 
-    public static Child2SeasonBeverageFrag newInstance() {
-        return new Child2SeasonBeverageFrag();
+    public static Child1SeasonDrinkFrag newInstance() {
+        return new Child1SeasonDrinkFrag();
     }
 
     @Nullable
     public View onCreateView(@NonNull LayoutInflater inflater,
                              @Nullable ViewGroup container,
                              @Nullable Bundle savedInstanceState) {
-        view = inflater.inflate(R.layout.child_fragment_season_beverage_2pg, container, false);
+        view = inflater.inflate(R.layout.frag_season_drink_child1, container, false);
 
         return view;
     }

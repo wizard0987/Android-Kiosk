@@ -13,6 +13,7 @@ import androidx.viewpager2.adapter.FragmentStateAdapter;
 import androidx.viewpager2.widget.ViewPager2;
 
 import com.example.megacoffee.R;
+import com.example.megacoffee.databinding.ParentFragmentSeasonBeverageBinding;
 import com.example.megacoffee.fragment.subFragment.Child1SeasonBeverageFrag;
 import com.example.megacoffee.fragment.subFragment.Child2SeasonBeverageFrag;
 
@@ -20,9 +21,10 @@ import me.relex.circleindicator.CircleIndicator3;
 
 public class TabMenuSeasonBeverageFrag extends Fragment {
 
-    private View view;
-    private ViewPager2 viewPager;
-    private CircleIndicator3 indicator;
+    private ParentFragmentSeasonBeverageBinding sbBinding;
+//    private View view;
+//    private ViewPager2 viewPager;
+//    private CircleIndicator3 indicator;
     private int num_page = 2;
 
     public TabMenuSeasonBeverageFrag() { }
@@ -35,25 +37,56 @@ public class TabMenuSeasonBeverageFrag extends Fragment {
     public View onCreateView(LayoutInflater inflater,
                              @Nullable ViewGroup container,
                              Bundle savedInstanceState) {
-        view = inflater.inflate(R.layout.parent_fragment_season_beverage, container, false);
-        
-        viewPager = view.findViewById(R.id.vp_child_fragment_season_beverage);
-        indicator = view.findViewById(R.id.ci_child_fragment_season_beverage);
-        indicator.setViewPager(viewPager);
-        indicator.createIndicators(num_page, 0);
+//        view = inflater.inflate(R.layout.parent_fragment_season_beverage, container, false);
+//
+//        viewPager = view.findViewById(R.id.vp_child_fragment_season_beverage);
+//        indicator = view.findViewById(R.id.ci_child_fragment_season_beverage);
+//        indicator.setViewPager(viewPager);
+//        indicator.createIndicators(num_page, 0);
+//
+//        viewPager.setAdapter(new ViewPagerAdapter(getActivity()));
+//        viewPager.setOrientation(ViewPager2.ORIENTATION_HORIZONTAL);
+//        viewPager.setCurrentItem(0);
+//        // viewpager를 사용할 때 이전 또는 다음 페이지 몇개까지 미리 로딩할지 지정
+//        viewPager.setOffscreenPageLimit(3);
+//
+//        viewPager.registerOnPageChangeCallback(new ViewPager2.OnPageChangeCallback() {
+//            public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {}
+//
+//            public void onPageSelected(int position) {
+//                indicator.animatePageSelected(position);
+//            }
+//
+//            public void onPageScrollStateChanged(int state) {}
+//        });
 
-        viewPager.setAdapter(new ViewPagerAdapter(getActivity()));
-        viewPager.setOrientation(ViewPager2.ORIENTATION_HORIZONTAL);
-        viewPager.setCurrentItem(0);
+        /**
+         * Fragment에서 Binding 사용하기
+         */
+        sbBinding = ParentFragmentSeasonBeverageBinding.inflate(inflater, container, false);
+        View view = sbBinding.getRoot();
 
-        viewPager.registerOnPageChangeCallback(new ViewPager2.OnPageChangeCallback() {
-            public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {}
+        sbBinding.vpChildFragmentSeasonBeverage.setAdapter(new ViewPagerAdapter(getActivity()));
+        sbBinding.vpChildFragmentSeasonBeverage.setOrientation(ViewPager2.ORIENTATION_HORIZONTAL);
+        sbBinding.vpChildFragmentSeasonBeverage.setCurrentItem(0);
+        // viewpager를 사용할 때 이전 또는 다음 페이지 몇개까지 미리 로딩할지 지정
+//        sbBinding.vpChildFragmentSeasonBeverage.setOffscreenPageLimit(3);
 
-            public void onPageSelected(int position) {
-                indicator.animatePageSelected(position);
+        sbBinding.ciChildFragmentSeasonBeverage.setViewPager(sbBinding.vpChildFragmentSeasonBeverage);
+        sbBinding.ciChildFragmentSeasonBeverage.createIndicators(num_page, 0);
+
+        sbBinding.vpChildFragmentSeasonBeverage.registerOnPageChangeCallback(new ViewPager2.OnPageChangeCallback() {
+            public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
+                super.onPageScrolled(position, positionOffset, positionOffsetPixels);
             }
 
-            public void onPageScrollStateChanged(int state) {}
+            public void onPageSelected(int position) {
+                super.onPageSelected(position);
+            }
+
+            public void onPageScrollStateChanged(int state) {
+                super.onPageScrollStateChanged(state);
+            }
         });
 
         return view;

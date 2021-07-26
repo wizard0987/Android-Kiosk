@@ -15,7 +15,7 @@ public class IceCoffeeFrag extends Fragment {
     public IceCoffeeFrag() { }
 
     public static IceCoffeeFrag newInstance() {
-        return newInstance();
+        return new IceCoffeeFrag();
     }
 
     @Nullable

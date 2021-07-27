@@ -4,14 +4,14 @@ import android.content.Context;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.ViewGroup;
-import android.widget.ImageView;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.viewpager2.widget.ViewPager2;
 
-import com.bumptech.glide.Glide;
-import com.example.megacoffee.databinding.ItemListFormBinding;
+import com.example.megacoffee.R;
+import com.example.megacoffee.databinding.GridItemBinding;
+import com.example.megacoffee.entity.Coffee;
 
 import java.util.List;
 
@@ -21,8 +21,7 @@ public class SlideAdapter extends RecyclerView.Adapter<SlideAdapter.SlideViewHol
 
     private Context context;
     private ViewPager2 viewPager;
-    //    private List<entity.HotCoffeeEntity> list;
-    private List<String> list;
+    private List<Coffee> list;
 
     // 무한 슬라이딩을 위해 Adapter에서 리스트 끝에 올 때마다 새로운 리스트를 추가하기 위한 코드
     private Runnable runnable = new Runnable() {
@@ -33,8 +32,8 @@ public class SlideAdapter extends RecyclerView.Adapter<SlideAdapter.SlideViewHol
         }
     };
 
-    public SlideAdapter(Context context, ViewPager2 viewPager, List<String> list) {
-        this.context    = context;
+    public SlideAdapter(ViewPager2 viewPager, List<Coffee> list) {
+//        this.context    = context;
         this.viewPager  = viewPager;
         this.list       = list;
     }
@@ -46,7 +45,7 @@ public class SlideAdapter extends RecyclerView.Adapter<SlideAdapter.SlideViewHol
     @NonNull
     public SlideViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         return new SlideViewHolder(
-                ItemListFormBinding.inflate(
+                GridItemBinding.inflate(
                         LayoutInflater.from(parent.getContext()), parent, false
                 )
         );
@@ -68,16 +67,22 @@ public class SlideAdapter extends RecyclerView.Adapter<SlideAdapter.SlideViewHol
 
     public class SlideViewHolder extends RecyclerView.ViewHolder {
 
-        private ItemListFormBinding itemListBinding;
+        private GridItemBinding gridItemBinding;
 
-        public SlideViewHolder(ItemListFormBinding fsdBinding) {
-            super(fsdBinding.getRoot());
-            this.itemListBinding = fsdBinding;
+        public SlideViewHolder(GridItemBinding gridItemBinding) {
+            super(gridItemBinding.getRoot());
+            this.gridItemBinding = gridItemBinding;
         }
 
-        void bind(String imgUrl) {
+        void bind(Coffee coffee) {
             try {
-                Glide.with(context).load(imgUrl).into((ImageView) itemListBinding.imageSlider);
+                if(coffee.getImgSrc().equals("ic_launcher_background")) {
+                    gridItemBinding.itemImg.setImageResource(R.drawable.ic_launcher_background);
+                } else {
+                    gridItemBinding.itemImg.setImageResource(R.drawable.ic_launcher_foreground);
+                }
+                gridItemBinding.itemName.setText(coffee.getName());
+                gridItemBinding.itemPrice.setText(coffee.getPrice() + "원");
             } catch (Exception e) {
                 Log.d(TAG, "ERROR: " + e.getMessage());
             }

@@ -5,12 +5,12 @@ public class Coffee {
     private Long id;
     private String name;
     private String description;
-    private String imgSrc;
+    private Integer imgSrc;
     private Integer price;
     private Integer stock;
     private Long category_id;
 
-    public Coffee(Long id, String name, String description, String imgSrc, Integer price, Integer stock, Long category_id) {
+    public Coffee(Long id, String name, String description, Integer imgSrc, Integer price, Integer stock, Long category_id) {
         this.id = id;
         this.name = name;
         this.description = description;
@@ -44,11 +44,11 @@ public class Coffee {
         this.description = description;
     }
 
-    public String getImgSrc() {
+    public Integer getImgSrc() {
         return imgSrc;
     }
 
-    public void setImgSrc(String imgSrc) {
+    public void setImgSrc(Integer imgSrc) {
         this.imgSrc = imgSrc;
     }
 

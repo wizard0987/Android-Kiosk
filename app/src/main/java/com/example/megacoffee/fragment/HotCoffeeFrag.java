@@ -1,18 +1,24 @@
 package com.example.megacoffee.fragment;
 
+import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 
+import android.content.Context;
 import android.os.Bundle;
 import android.os.Handler;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
 import androidx.annotation.Nullable;
+import androidx.recyclerview.widget.RecyclerView;
 import androidx.viewpager2.widget.CompositePageTransformer;
 import androidx.viewpager2.widget.MarginPageTransformer;
 import androidx.viewpager2.widget.ViewPager2;
 
+import com.example.megacoffee.R;
+import com.example.megacoffee.databinding.CoffeeItemBinding;
 import com.example.megacoffee.databinding.FragHotCoffeeBinding;
 import com.example.megacoffee.entity.Coffee;
 
@@ -42,12 +48,12 @@ public class HotCoffeeFrag extends Fragment {
 
     private List<Coffee> createDummyItems() {
         List<Coffee> itemList = new ArrayList<>();
-        itemList.add(new Coffee(1L, "아메리카노", "핫아", "ic_launcher_background", 1500, 100, 3L));
-        itemList.add(new Coffee(2L, "카푸치노", "까뿌찌노~", "ic_launcher_background", 2700, 50, 3L));
-        itemList.add(new Coffee(3L, "카라멜마끼아또", "ㄲ라멜", "ic_launcher_background", 3500, 130, 3L));
-        itemList.add(new Coffee(4L, "카페모카", "모카빨", "ic_launcher_background", 3700, 220, 3L));
-        itemList.add(new Coffee(5L, "콜드브루", "핫브루", "ic_launcher_background", 3300, 99, 3L));
-        itemList.add(new Coffee(6L, "카페라떼", "우유커피", "ic_launcher_background", 3800, 70, 3L));
+        itemList.add(new Coffee(1L, "아메리카노", "핫아", R.drawable.hot_americano, 1500, 100, 3L));
+        itemList.add(new Coffee(2L, "카푸치노", "까뿌찌노~", R.drawable.hot_cappuccino, 2700, 50, 3L));
+        itemList.add(new Coffee(3L, "카라멜마끼아또", "ㄲ라멜", R.drawable.hot_caramel_macchiato, 3500, 130, 3L));
+        itemList.add(new Coffee(4L, "카페모카", "모카빨", R.drawable.hot_cafe_mocha, 3700, 220, 3L));
+        itemList.add(new Coffee(5L, "티라미슈라떼", "케이크라떼", R.drawable.hot_tiramisu_latte, 3300, 99, 3L));
+        itemList.add(new Coffee(6L, "바닐라라떼", "바닐라무첨가", R.drawable.hot_vanilla_latte, 3800, 70, 3L));
         return itemList;
     }
 
@@ -93,6 +99,81 @@ public class HotCoffeeFrag extends Fragment {
         });
 
         return view;
+    }
+
+    public class SlideAdapter extends RecyclerView.Adapter<SlideAdapter.SlideViewHolder> {
+
+        private static final String TAG = "HotCoffeeAdapter";
+
+        private Context context;
+        private ViewPager2 viewPager;
+        private List<Coffee> list;
+
+        // 무한 슬라이딩을 위해 Adapter에서 리스트 끝에 올 때마다 새로운 리스트를 추가하기 위한 코드
+        private Runnable runnable = new Runnable() {
+            @Override
+            public void run() {
+                list.addAll(list);
+                notifyDataSetChanged(); // (새로운) 아이템 추가 시에 ReBinding(새로 고침)을 시킨다.
+            }
+        };
+
+        public SlideAdapter(ViewPager2 viewPager, List<Coffee> list) {
+//        this.context    = context;
+            this.viewPager  = viewPager;
+            this.list       = list;
+        }
+
+        public int getItemViewType(int position) {
+            return super.getItemViewType(position);
+        }
+
+        @NonNull
+        public SlideAdapter.SlideViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+            return new SlideAdapter.SlideViewHolder(
+                    CoffeeItemBinding.inflate(
+                            LayoutInflater.from(parent.getContext()), parent, false
+                    )
+            );
+        }
+
+        public void onBindViewHolder(@NonNull SlideAdapter.SlideViewHolder holder, int position) {
+            position = position % list.size();
+            holder.bind(list.get(position));
+            // 무한 슬라이딩 적용
+            if(position == list.size() - 2) { // 페이지 위치가 아이템 목록 직전일 경우
+                // 파라미터 Runnable 클래스를 통해 같은 아이템 목록을 새로 추가한다.
+                viewPager.post(runnable);
+            }
+        }
+
+        public int getItemCount() {
+            return list == null ? 0 : 100; // 무한 슬라이딩을 위해 전체 페이지 수를 100으로 설정
+        }
+
+        public class SlideViewHolder extends RecyclerView.ViewHolder {
+
+            private CoffeeItemBinding coffeeItemBinding;
+
+            public SlideViewHolder(CoffeeItemBinding coffeeItemBinding) {
+                super(coffeeItemBinding.getRoot());
+                this.coffeeItemBinding = coffeeItemBinding;
+            }
+
+            void bind(Coffee coffee) {
+                try {
+                    if(coffee.getImgSrc().equals("ic_launcher_background")) {
+                        coffeeItemBinding.ivImage.setImageResource(R.drawable.ic_launcher_background);
+                    } else {
+                        coffeeItemBinding.ivImage.setImageResource(R.drawable.ic_launcher_foreground);
+                    }
+                    coffeeItemBinding.tvName.setText(coffee.getName());
+                    coffeeItemBinding.tvPrice.setText(coffee.getPrice() + "원");
+                } catch (Exception e) {
+                    Log.d(TAG, "ERROR: " + e.getMessage());
+                }
+            }
+        }
     }
 
 }
